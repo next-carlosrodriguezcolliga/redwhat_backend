@@ -1,14 +1,24 @@
 package com.hackaton.redwhat.services.users.controller;
 
-import javax.enterprise.context.ApplicationScoped;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+
+import org.eclipse.microprofile.rest.client.inject.RestClient;
+
+import com.hackaton.redwhat.services.contents.controller.ToDoContent;
+import com.hackaton.redwhat.services.users.client.ContentsClient;
 
 @ApplicationScoped
 public class UsersService {
     ArrayList<ToDo> list = new ArrayList<>();
+    
+    @Inject
+    @RestClient
+    ContentsClient contentsClient;
 
     public UsersService(){
 
@@ -53,9 +63,9 @@ public class UsersService {
         return user;
     }
     
-    public ToDo updateContent(String user_id, ToDoContent content){
+    public ToDo updateContent(String user_id, String contentId){
     	ToDo user = getUser(user_id);
-    	user.addContent(content);
+    	user.addContent(contentsClient.getContent(contentId));
         return user;
     }
 

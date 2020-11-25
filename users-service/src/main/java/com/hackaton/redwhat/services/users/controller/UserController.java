@@ -13,13 +13,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
-import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.gson.Gson;
-import com.hackaton.redwhat.services.users.client.ContentsClient;
+import com.hackaton.redwhat.services.contents.controller.ToDoContent;
 
 
 @Path("/users")
@@ -31,10 +28,6 @@ public class UserController {
     
     @Inject
     UsersService usersService;
-
-    @Inject
-    @RestClient
-    ContentsClient contentsClient;
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -97,8 +90,8 @@ public class UserController {
     
     @Path("/content/{id}")
     @PATCH
-    public Response updateUserContentById(@PathParam("id") String user_id, @Valid ToDoContent content) {
+    public Response updateUserContentById(@PathParam("id") String user_id, @Valid String contentId) {
         LOGGER.info("User content update: {}", user_id);
-        return Response.ok(usersService.updateContent(user_id, content)).build();
+        return Response.ok(usersService.updateContent(user_id, contentId)).build();
     }
 }

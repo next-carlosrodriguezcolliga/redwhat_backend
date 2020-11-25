@@ -9,14 +9,16 @@ import javax.ws.rs.core.MediaType;
 
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
+import com.hackaton.redwhat.services.contents.controller.ToDoContent;
+
 @Singleton
 @Path("/contents")
 @RegisterRestClient
 public interface ContentsClient {
 
     @GET
-    @Path("/content/{contentId}")
+    @Path("/{contentId}")
     @Produces(MediaType.APPLICATION_JSON)
-    String getContent(@PathParam("contentId") Long contentId);
+    ToDoContent getContent(@PathParam("contentId") String contentId);
 
 }

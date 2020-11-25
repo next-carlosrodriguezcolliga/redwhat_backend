@@ -1,4 +1,4 @@
-package com.hackaton.redwhat.services.users.controller;
+package com.hackaton.redwhat.services.contents.controller;
 
 import java.util.UUID;
 

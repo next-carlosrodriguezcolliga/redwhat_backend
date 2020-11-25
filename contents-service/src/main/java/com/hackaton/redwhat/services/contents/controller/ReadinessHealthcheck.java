@@ -1,4 +1,4 @@
-package com.hackaton.redwhat.services.users.controller;
+package com.hackaton.redwhat.services.contents.controller;
 
 import org.eclipse.microprofile.health.HealthCheck;
 import org.eclipse.microprofile.health.HealthCheckResponse;
@@ -12,7 +12,7 @@ public class ReadinessHealthcheck implements HealthCheck {
 
     @Override
     public HealthCheckResponse call() {
-        return HealthCheckResponse.named("User Health Check").up().build();
+        return HealthCheckResponse.named("Content Health Check").up().build();
     }
 
 }
