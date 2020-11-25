@@ -7,11 +7,14 @@ import io.quarkus.mongodb.panache.PanacheMongoEntity;
 @MongoEntity(collection = "users")
 public class User extends PanacheMongoEntity {
 
-
 	private String userId;
+	
 	private int points;
+	
 	private int level;
+	
 	//private List<Content> viewedContents;
+	
 	private int age;
 
 	public String getUserId() {
@@ -21,6 +24,10 @@ public class User extends PanacheMongoEntity {
 	// entity methods
     public static User findByUserId(String userId) {
         return find("userId", userId).firstResult();
+    }
+    
+    public static void deleteByUserId(String userId) {
+        delete("userId", userId);
     }
 
 	public void setUserId(String userId) {
