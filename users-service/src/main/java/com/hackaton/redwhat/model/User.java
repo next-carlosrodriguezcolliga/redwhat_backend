@@ -1,27 +1,35 @@
 package com.hackaton.redwhat.model;
 
+import java.util.List;
+
 import io.quarkus.mongodb.panache.MongoEntity;
 import io.quarkus.mongodb.panache.PanacheMongoEntity;
-
 
 @MongoEntity(collection = "users")
 public class User extends PanacheMongoEntity {
 
-
 	private String userId;
+
 	private int points;
+
 	private int level;
-	//private List<Content> viewedContents;
+
+	private List<Content> viewedContents;
+
 	private int age;
 
 	public String getUserId() {
 		return userId;
 	}
-	
+
 	// entity methods
-    public static User findByUserId(String userId) {
-        return find("userId", userId).firstResult();
-    }
+	public static User findByUserId(String userId) {
+		return find("userId", userId).firstResult();
+	}
+
+	public static void deleteByUserId(String userId) {
+		delete("userId", userId);
+	}
 
 	public void setUserId(String userId) {
 		this.userId = userId;
@@ -43,13 +51,13 @@ public class User extends PanacheMongoEntity {
 		this.level = level;
 	}
 
-	//public List<Content> getViewedContents() {
-	//	return viewedContents;
-	//}
+	public List<Content> getViewedContents() {
+		return viewedContents;
+	}
 
-	//public void setViewedContents(List<Content> viewedContents) {
-	//	this.viewedContents = viewedContents;
-	//}
+	public void setViewedContents(List<Content> viewedContents) {
+		this.viewedContents = viewedContents;
+	}
 
 	public int getAge() {
 		return age;
@@ -62,8 +70,7 @@ public class User extends PanacheMongoEntity {
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", points=" + points + ", level=" + level + ", viewedContents="
-				//+ viewedContents 
-				+ ", age=" + age + "]";
+				+ viewedContents + ", age=" + age + "]";
 	}
 
 }
