@@ -46,10 +46,11 @@ public class ContentController {
 
     @Path("/{id}")
     @GET
-    public Response getContentById(@PathParam("id") String id) {
+    public ToDoContent getContentById(@PathParam("id") String id) {
         LOGGER.info("Content get: id={}", id);
-        return Response.ok(contentService.getContent(id)).build();
+        return contentService.getContent(id);
     }
+    
     
     @Path("/{id}")
     @PATCH

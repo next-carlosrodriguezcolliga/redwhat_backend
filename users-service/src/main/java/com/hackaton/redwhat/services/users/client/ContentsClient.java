@@ -1,6 +1,7 @@
 package com.hackaton.redwhat.services.users.client;
 
 import javax.inject.Singleton;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -9,7 +10,9 @@ import javax.ws.rs.core.MediaType;
 
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
-import com.hackaton.redwhat.services.contents.controller.ToDoContent;
+import com.hackaton.redwhat.services.users.controller.ToDoContent;
+
+
 
 @Singleton
 @Path("/contents")
@@ -17,8 +20,9 @@ import com.hackaton.redwhat.services.contents.controller.ToDoContent;
 public interface ContentsClient {
 
     @GET
-    @Path("/{contentId}")
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    ToDoContent getContent(@PathParam("contentId") String contentId);
+    @Consumes(MediaType.APPLICATION_JSON)
+    public ToDoContent getContentById(@PathParam("id") String id);
 
 }

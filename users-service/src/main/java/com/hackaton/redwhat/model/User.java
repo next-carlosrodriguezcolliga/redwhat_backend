@@ -1,11 +1,15 @@
 package com.hackaton.redwhat.model;
 
+import org.bson.codecs.pojo.annotations.BsonId;
+
 import io.quarkus.mongodb.panache.MongoEntity;
+import io.quarkus.mongodb.panache.PanacheMongoEntityBase;
 
 
 @MongoEntity(collection = "users")
-public class User {
+public class User extends PanacheMongoEntityBase {
 
+	@BsonId
 	private String userId;
 	private int points;
 	private int level;
@@ -15,6 +19,11 @@ public class User {
 	public String getUserId() {
 		return userId;
 	}
+	
+	// entity methods
+    public static User findByUserId(String userId) {
+        return find("userId", userId).firstResult();
+    }
 
 	public void setUserId(String userId) {
 		this.userId = userId;

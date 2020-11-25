@@ -7,7 +7,7 @@ import java.util.UUID;
 
 import javax.validation.constraints.NotNull;
 
-import com.hackaton.redwhat.services.contents.controller.ToDoContent;
+
 
 public class ToDo {
 
