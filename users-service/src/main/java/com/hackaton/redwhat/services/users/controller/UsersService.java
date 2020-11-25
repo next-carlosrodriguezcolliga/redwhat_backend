@@ -7,7 +7,7 @@ import java.util.Optional;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
-
+import org.bson.types.ObjectId;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import com.hackaton.redwhat.model.User;
@@ -49,12 +49,12 @@ public class UsersService {
 //        return item.orElse(null);
 //    }
     
-    public User getUser(String id){    	
-    	return User.findByUserId(id);
+    public User getUser(String userId){    	
+    	return User.findByUserId(userId);
     }
     
   public User updateUser(User userToUpdate){
-	  User user = getUser(userToUpdate.getUserId());
+	  User user = getUser(userToUpdate.getUserId().toString());
 	  user.setPoints(userToUpdate.getPoints());
 	  user.setLevel(userToUpdate.getLevel());
 	  user.setAge(userToUpdate.getAge());

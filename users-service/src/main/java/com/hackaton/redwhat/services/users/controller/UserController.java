@@ -49,12 +49,13 @@ public class UserController {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addUser(@Valid User user) {
         LOGGER.info("User add: {}", user);
-        usersService.addUser(user);
+        
         try {
             if (user == null) {
                 return Response.status(400).entity("User not provided").build();
             }
-            return Response.ok(usersService.addUser(user)).build();
+            User userCreated = usersService.addUser(user);
+            return Response.ok(userCreated).build();
         }
         catch (Exception e){
             return Response.serverError().build();

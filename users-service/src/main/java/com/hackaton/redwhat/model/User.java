@@ -1,15 +1,13 @@
 package com.hackaton.redwhat.model;
 
-import org.bson.codecs.pojo.annotations.BsonId;
-
 import io.quarkus.mongodb.panache.MongoEntity;
-import io.quarkus.mongodb.panache.PanacheMongoEntityBase;
+import io.quarkus.mongodb.panache.PanacheMongoEntity;
 
 
 @MongoEntity(collection = "users")
-public class User extends PanacheMongoEntityBase {
+public class User extends PanacheMongoEntity {
 
-	@BsonId
+
 	private String userId;
 	private int points;
 	private int level;

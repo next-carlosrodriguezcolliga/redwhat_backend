@@ -13,10 +13,10 @@ import io.quarkus.mongodb.panache.PanacheMongoRepository;
 public class UserMongoRepository implements PanacheMongoRepository<User>{
 	
 	
-	public User insert(User user) {
-		persistOrUpdate(user);
-		return findUser(user.getUserId());
-	}
+//	public User insert(User user) {
+//		persistOrUpdate(user);
+//		return findUser(user.getUserId());
+//	}
 	
 	public User findUser(String userId) {
 		return findById(new ObjectId(userId));
