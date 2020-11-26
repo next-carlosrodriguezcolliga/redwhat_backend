@@ -68,6 +68,7 @@ public class ContentsService {
     	content.setTooltip(contentToUpdate.getTooltip());
     	content.setUrl(contentToUpdate.getUrl());
     	content.setLevel(contentToUpdate.getLevel());
+    	content.persistOrUpdate();
         return content;
     }
    
