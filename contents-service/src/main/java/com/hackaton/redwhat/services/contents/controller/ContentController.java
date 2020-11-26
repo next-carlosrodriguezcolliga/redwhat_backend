@@ -88,6 +88,16 @@ public class ContentController {
         }
     }
     
+    @Path("/map")
+    @GET
+    public Response getAllContents() {
+        LOGGER.info("Contents get");
+
+        	return Response.ok(contentService.getAllContents()).build();
+        
+    }
+    
+    
     @GET
     public Response getAllData() {
         LOGGER.info("Get all contents");
