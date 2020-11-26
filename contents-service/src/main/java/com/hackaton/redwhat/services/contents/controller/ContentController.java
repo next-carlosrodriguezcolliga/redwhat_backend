@@ -33,6 +33,7 @@ public class ContentController {
     ContentsService contentService;
 
     @POST
+    @Path("/addContent")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addContent(@Valid Content content) {
         LOGGER.info("Content add: {}", content);
@@ -74,10 +75,28 @@ public class ContentController {
         return Response.ok(contentService.getAllSections()).build();
     }
     
-    @Path("/allData")
+    @Path("/contentsFilteredBySection/{sectionId}")
+    @GET
+    public Response getAllContents(@PathParam("sectionId")  Integer sectionId) {
+        LOGGER.info("Contents get");
+        if (sectionId == null) {
+        	return Response.ok(contentService.getAllContents()).build();
+        }
+        else {
+        	return Response.ok(contentService.getContentBySectionId(sectionId)).build();
+        }
+    }
+    
+//    @Path("/dataMap")
+//    @GET
+//    public Response getDataMap() {
+//        LOGGER.info("Get all data");
+//        return Response.ok(contentService.getAllSectionsAndContents()).build();
+//    }
+    
     @GET
     public Response getAllData() {
-        LOGGER.info("Get all data");
+        LOGGER.info("Get all contents");
         return Response.ok(contentService.getAllSectionsAndContents()).build();
     }
 

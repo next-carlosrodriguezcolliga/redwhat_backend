@@ -13,7 +13,7 @@ import io.quarkus.mongodb.panache.PanacheMongoEntityBase;
 @JsonIgnoreProperties
 public class Content extends PanacheMongoEntityBase {
 
-	private int sectionId;
+	private Integer sectionId;
 	
 	@BsonId
 	private Integer contentId;

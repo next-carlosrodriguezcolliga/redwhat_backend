@@ -31,6 +31,14 @@ public class ContentsService {
     	return Section.findAll().list();
     }
     
+    public List<Content> getContentBySectionId(Integer sectionId){
+    	return Content.findBySectionId(sectionId);
+    }
+    
+    public List<Section> getAllContents(){
+    	return Content.findAll().list();
+    }
+    
     public List<AllData> getAllSectionsAndContents(){
     	List<Section> sections = Section.findAll().list();
     	
