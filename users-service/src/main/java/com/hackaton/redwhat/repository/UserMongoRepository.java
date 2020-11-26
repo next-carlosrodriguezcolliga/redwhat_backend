@@ -4,7 +4,7 @@ import javax.enterprise.context.ApplicationScoped;
 
 import org.bson.types.ObjectId;
 
-import com.hackaton.redwhat.model.User;
+import com.hackaton.redwhat.services.users.model.User;
 
 import io.quarkus.mongodb.panache.PanacheMongoRepository;
 

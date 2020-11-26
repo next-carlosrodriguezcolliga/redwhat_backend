@@ -10,7 +10,9 @@ import javax.ws.rs.core.MediaType;
 
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
-import com.hackaton.redwhat.services.users.controller.ToDoContent;
+import com.hackaton.redwhat.services.users.model.Content;
+
+
 
 
 
@@ -23,6 +25,6 @@ public interface ContentsClient {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public ToDoContent getContentById(@PathParam("id") String id);
+    public Content getContentById(@PathParam("id") Integer id);
 
 }

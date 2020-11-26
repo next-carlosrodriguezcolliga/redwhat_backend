@@ -1,10 +1,11 @@
-package com.hackaton.redwhat.model;
+package com.hackaton.redwhat.services.users.model;
 
-import io.quarkus.mongodb.panache.MongoEntity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@MongoEntity(collection = "contents")
+@JsonIgnoreProperties
 public class Content {
 
+	private String id;
 	private int sectionId;
 	private int contentId;
 	private String description;
@@ -16,7 +17,7 @@ public class Content {
 	private int size;
 	private String tooltip;
 	private String fill;
-
+		
 	public int getSectionId() {
 		return sectionId;
 	}
@@ -103,6 +104,14 @@ public class Content {
 
 	public void setFill(String fill) {
 		this.fill = fill;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	@Override

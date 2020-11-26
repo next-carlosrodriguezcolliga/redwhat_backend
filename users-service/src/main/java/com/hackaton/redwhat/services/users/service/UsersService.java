@@ -1,7 +1,6 @@
 package com.hackaton.redwhat.services.users.service;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -9,8 +8,9 @@ import javax.inject.Inject;
 
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
-import com.hackaton.redwhat.model.User;
 import com.hackaton.redwhat.services.users.client.ContentsClient;
+import com.hackaton.redwhat.services.users.model.Content;
+import com.hackaton.redwhat.services.users.model.User;
 
 @ApplicationScoped
 public class UsersService {
@@ -48,6 +48,19 @@ public class UsersService {
 	  user.setPoints(userToUpdate.getPoints());
 	  user.setLevel(userToUpdate.getLevel());
 	  user.setAge(userToUpdate.getAge());
+	  user.setName(userToUpdate.getName());
+	  user.persistOrUpdate();
+    return user;
+}
+  
+  public User addViewedContentUser(String userId, Integer contentId){
+	  User user = getUser(userId);
+	  if (user.getViewedContents() == null) {
+		  user.setViewedContents(new ArrayList<Integer>());
+	  }
+	  Content content = contentsClient.getContentById(contentId);
+	  user.getViewedContents().add(content.getContentId());
+	  user.setPoints(user.getPoints() + content.getPointsReward());
 	  user.persistOrUpdate();
     return user;
 }

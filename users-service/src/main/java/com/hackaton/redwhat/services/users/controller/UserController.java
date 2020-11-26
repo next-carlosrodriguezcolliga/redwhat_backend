@@ -16,7 +16,7 @@ import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.hackaton.redwhat.model.User;
+import com.hackaton.redwhat.services.users.model.User;
 import com.hackaton.redwhat.services.users.service.UsersService;
 
 
@@ -86,9 +86,9 @@ public class UserController {
     
     @Path("/contents/{userId}")
     @POST
-    public Response addContentViewedById(@PathParam("userId") String userId, @Valid User user) {
-        LOGGER.info("User update: id={}", user);
-        return Response.ok(usersService.updateUser(userId, user)).build();
+    public Response addContentViewedById(@PathParam("userId") String userId, @Valid Integer contentId) {
+        LOGGER.info("Add Content viewed: id={}", contentId);
+        return Response.ok(usersService.addViewedContentUser(userId, contentId)).build();
     }
     
     @Path("/{userId}")

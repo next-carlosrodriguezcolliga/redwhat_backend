@@ -1,4 +1,4 @@
-package com.hackaton.redwhat.model;
+package com.hackaton.redwhat.services.users.model;
 
 import java.util.List;
 
@@ -13,8 +13,10 @@ public class User extends PanacheMongoEntity {
 	private int points;
 
 	private int level;
+	
+	private String name;
 
-	private List<Content> viewedContents;
+	private List<Integer> viewedContents;
 
 	private int age;
 
@@ -51,11 +53,11 @@ public class User extends PanacheMongoEntity {
 		this.level = level;
 	}
 
-	public List<Content> getViewedContents() {
+	public List<Integer> getViewedContents() {
 		return viewedContents;
 	}
 
-	public void setViewedContents(List<Content> viewedContents) {
+	public void setViewedContents(List<Integer> viewedContents) {
 		this.viewedContents = viewedContents;
 	}
 
@@ -65,6 +67,14 @@ public class User extends PanacheMongoEntity {
 
 	public void setAge(int age) {
 		this.age = age;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@Override

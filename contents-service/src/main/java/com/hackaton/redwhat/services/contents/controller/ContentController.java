@@ -16,6 +16,10 @@ import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.hackaton.redwhat.services.contents.model.Content;
+import com.hackaton.redwhat.services.contents.model.Section;
+import com.hackaton.redwhat.services.contents.service.ContentsService;
+
 
 
 @Path("/contents")
@@ -30,40 +34,73 @@ public class ContentController {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addContent(@Valid ToDoContent content) {
+    public Response addContent(@Valid Content content) {
         LOGGER.info("Content add: {}", content);
-        contentService.addContent(content);
+       
         try {
             if (content == null) {
                 return Response.status(400).entity("Content not provided").build();
             }
-            return Response.ok(contentService.addContent(content)).build();
+            Content contentCreated = contentService.addContent(content);
+            return Response.ok(contentCreated).build();
         }
         catch (Exception e){
             return Response.serverError().build();
         }
     }
-
-    @Path("/{id}")
+    
+    @POST
+    @Path("/addSection")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addSection(@Valid Section section) {
+        LOGGER.info("Section add: {}", section);
+       
+        try {
+            if (section == null) {
+                return Response.status(400).entity("Content not provided").build();
+            }
+            Section contentCreated = contentService.addSection(section);
+            return Response.ok(contentCreated).build();
+        }
+        catch (Exception e){
+            return Response.serverError().build();
+        }
+    }
+    
+    @Path("/sections")
     @GET
-    public ToDoContent getContentById(@PathParam("id") String id) {
-        LOGGER.info("Content get: id={}", id);
-        return contentService.getContent(id);
+    public Response getAllSections() {
+        LOGGER.info("Sections get");
+        return Response.ok(contentService.getAllSections()).build();
+    }
+    
+    @Path("/allData")
+    @GET
+    public Response getAllData() {
+        LOGGER.info("Get all data");
+        return Response.ok(contentService.getAllSectionsAndContents()).build();
+    }
+
+    @Path("/{contentId}")
+    @GET
+    public Response getContentById(@PathParam("contentId") Integer contentId) {
+        LOGGER.info("Content get: contentId={}", contentId);
+        return Response.ok(contentService.getContent(contentId)).build();
     }
     
     
-    @Path("/{id}")
+    @Path("/{contentId}")
     @PATCH
-    public Response updateContentById(@PathParam("id") String id, @Valid ToDoContent content) {
+    public Response updateContentById(@PathParam("contentId") String contentId, @Valid Content content) {
         LOGGER.info("Content update: id={}", content);
         return Response.ok(contentService.updateContent(content)).build();
     }
     
-    @Path("/{id}")
+    @Path("/{contentId}")
     @DELETE
-    public Response deleteContentById(@PathParam("id") String id) {
-    	LOGGER.info("Delete add: {}", id);
-    	return Response.ok(contentService.deleteContent(id)).build();
+    public Response deleteContentById(@PathParam("contentId") String contentId) {
+    	LOGGER.info("Delete add: {}", contentId);
+    	return Response.ok(contentService.delete(Integer.valueOf(contentId))).build();
     }
     
 }
