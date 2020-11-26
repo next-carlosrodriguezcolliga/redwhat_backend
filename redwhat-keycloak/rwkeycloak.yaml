@@ -113,12 +113,6 @@ parameters:
   generate: expression
   from: '[a-zA-Z0-9]{8}'
   required: true
-- name: KEYCLOAK_PASSWORD
-  displayName: Keycloak Administrator Password
-  description: Keycloak Server administrator password
-  generate: expression
-  from: '[a-zA-Z0-9]{8}'
-  required: true
 - name: NAMESPACE
   displayName: Namespace used for DNS discovery
   description: >-
