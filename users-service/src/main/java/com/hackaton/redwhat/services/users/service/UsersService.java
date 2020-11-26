@@ -1,6 +1,7 @@
 package com.hackaton.redwhat.services.users.service;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.UUID;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -9,7 +10,9 @@ import javax.inject.Inject;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import com.hackaton.redwhat.services.users.client.ContentsClient;
+import com.hackaton.redwhat.services.users.model.AllStatistics;
 import com.hackaton.redwhat.services.users.model.Content;
+import com.hackaton.redwhat.services.users.model.GeneralStatistics;
 import com.hackaton.redwhat.services.users.model.User;
 
 @ApplicationScoped
@@ -54,9 +57,54 @@ public class UsersService {
 	  user.persistOrUpdate();
     return user;
 }
+  
+  public boolean updateUserCompletedStatus(int adrenalin, int familiy, int cartoon){    	
+	  User user = User.findAnyUser();
+	  user.setAdrenalin_completed(user.getAdrenalin_completed() + adrenalin);
+	  user.setCartoon_completed(user.getCartoon_completed() + cartoon);
+	  user.setFamily_completed(user.getFamily_completed() + familiy);
+	  user.persistOrUpdate();
+	  return true;
+  }
+  
+  public User getFirstUser() {
+	  return User.findAnyUser();
+  }
+  
+  public void addstatics(GeneralStatistics statics) {
+	  statics.persist();
+  }
+  
+  public AllStatistics getAllStatics() {
+	  AllStatistics allStatics = new AllStatistics();
+	  GeneralStatistics generalStatics = getStatics();
+	  User user = getFirstUser();
+	  
+	  Random random = new Random();
+	  allStatics.setUsers_online(generalStatics.getUsers_online() + random.nextInt(10 - 1) + 1);
+	  allStatics.setUsers_registered(generalStatics.getUsers_registered() + random.nextInt(5 - 1) + 1);
+	  allStatics.setAdrenalin_completed(user.getAdrenalin_completed());
+	  allStatics.setCartoon_completed(user.getCartoon_completed());
+	  allStatics.setFamily_completed(user.getFamily_completed());
+	  return allStatics;
+  }
+  
+  public GeneralStatistics getStatics() {
+	  return GeneralStatistics.getStatics();
+  }
+  
+  public boolean deleteAllStatics(){
+	  GeneralStatistics.deleteAll();
+      return true;
+  }
 
     public boolean delete(String userId){
         User.deleteByUserId(userId);
+        return true;
+    }
+    
+    public boolean deleteAll(){
+        User.deleteAll();
         return true;
     }
 }
