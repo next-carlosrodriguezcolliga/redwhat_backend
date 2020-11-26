@@ -1,5 +1,8 @@
 package com.hackaton.redwhat.services.users.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties
 public class AllStatistics {
 
 	private int users_online;
