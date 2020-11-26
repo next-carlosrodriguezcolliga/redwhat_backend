@@ -98,7 +98,7 @@ objects:
     triggers:
     - type: ConfigChange
 parameters:
-- name: APPLICATION_NAME
+  - name: APPLICATION_NAME
     displayName: Application Name
     description: The name for the application.
     value: keycloak
