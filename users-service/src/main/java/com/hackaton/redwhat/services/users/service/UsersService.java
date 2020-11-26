@@ -22,22 +22,12 @@ public class UsersService {
     public UsersService(){
 
     }
-
-//    public ToDo addUser(ToDo user){
-//        list.add(user);
-//        return user;
-//    }
     
     public User addUser(User user) {
     	user.setUserId(UUID.randomUUID().toString());
     	user.persist();
     	return getUser(user.getUserId());
     }
-
-//    public ToDo getUser(String id){
-//        Optional<ToDo> item = list.stream().filter(toDo -> toDo.getId().equals(id)).findFirst();
-//        return item.orElse(null);
-//    }
     
     public User getUser(String userId){    	
     	return User.findByUserId(userId);
@@ -64,41 +54,8 @@ public class UsersService {
 	  user.persistOrUpdate();
     return user;
 }
-    
-//    public ToDo updateUser(ToDo userToUpdate){
-//    	ToDo user = getUser(userToUpdate.getId());
-//    	user.setPoints(userToUpdate.getPoints());
-//        user.setProfile(userToUpdate.getProfile());
-//        return user;
-//    }
-//
-//    public ToDo updatePoints(String user_id, String points){
-//    	ToDo user = getUser(user_id);
-//    	user.setPoints(points);
-//        return user;
-//    }
-//    
-//    public ToDo updateProfile(String user_id, String profile){
-//    	ToDo user = getUser(user_id);
-//    	user.setProfile(profile);
-//        return user;
-//    }
-//    
-//    public ToDo updateLevel(String user_id, String level){
-//    	ToDo user = getUser(user_id);
-//    	user.setLevel(level);
-//        return user;
-//    }
-//    
-//    public ToDo updateContent(String user_id, String contentId){
-//    	ToDo user = getUser(user_id);
-//    	ToDoContent content = contentsClient.getContentById(contentId);
-//    	user.addContent(content);
-//        return user;
-//    }
 
     public boolean delete(String userId){
-    	//User user = getUser(id);
         User.deleteByUserId(userId);
         return true;
     }

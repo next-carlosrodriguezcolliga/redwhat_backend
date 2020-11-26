@@ -17,8 +17,6 @@ public class AllData {
 		this.sectionId = sectionId;
 	}
 
-
-
 	public String getDescription() {
 		return description;
 	}

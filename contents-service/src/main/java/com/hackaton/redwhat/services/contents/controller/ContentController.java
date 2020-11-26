@@ -23,8 +23,6 @@ import com.hackaton.redwhat.services.contents.service.ContentsService;
 
 import io.quarkus.runtime.StartupEvent;
 
-
-
 @Path("/contents")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -89,13 +87,6 @@ public class ContentController {
         	return Response.ok(contentService.getContentBySectionId(sectionId)).build();
         }
     }
-    
-//    @Path("/dataMap")
-//    @GET
-//    public Response getDataMap() {
-//        LOGGER.info("Get all data");
-//        return Response.ok(contentService.getAllSectionsAndContents()).build();
-//    }
     
     @GET
     public Response getAllData() {
@@ -173,8 +164,5 @@ public class ContentController {
         content.setUrl(url);
 		return content;
 	}
-    
- 
-    
     
 }
