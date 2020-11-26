@@ -115,16 +115,6 @@ parameters:
     generate: expression
     from: '[a-zA-Z0-9]{8}'
     required: true
-  - name: DB_VENDOR
-    displayName: DB Vendor
-    description: 'DB vendor (H2, POSTGRES, MYSQL or MARIADB)'
-    value: H2
-    required: true
-  - name: HOSTNAME_HTTPS
-    displayName: Custom https Route Hostname
-    description: >-
-      Custom hostname for https service route. Leave blank for default hostname,
-      e.g.: <application-name>-<namespace>.<default-domain-suffix>
   - name: NAMESPACE
     displayName: Namespace used for DNS discovery
     description: >-
