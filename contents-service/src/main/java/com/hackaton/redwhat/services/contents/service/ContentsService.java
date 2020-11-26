@@ -75,5 +75,15 @@ public class ContentsService {
         Content.deleteByContentId(contentId);
         return true;
     }
+    
+    public boolean deleteAllSections(){
+        Section.deleteAll();
+        return true;
+    }
+    
+    public boolean deleteAllContents(){
+        Content.deleteAll();
+        return true;
+    }
 }
 
